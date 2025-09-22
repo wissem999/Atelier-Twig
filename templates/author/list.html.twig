@@ -1,0 +1,39 @@
+<table border="1">
+    <thead>
+        <tr>
+            <th> Id </th>
+            <th> Picture </th>
+            <th> Username </th>
+            <th> Email </th>
+            <th> Number of books </th>
+        </tr>
+    </thead>
+{% if authors is empty %}
+    <tr>
+        <td colspan="5"> No authors found </td>
+    </tr>
+{% else  %}
+{% for a in authors %}
+<tr>
+    <td> {{ a.id }} </td>
+    <td> <img src="{{ a.picture }}" alt="author picture" width="50px" height="50px"> </td>
+    <td> {{ a.username| upper }} </td>
+    <td> {{ a.email }} </td>
+    <td> {{ a.nb_books }} </td>
+    <td><a href="{{ path('authorDetails', {'id': a.id}) }}">Details</a></td>
+</tr>  
+{% endfor %} 
+{% endif  %}
+</table>
+Number of authors: {{ authors|length }}
+<br>
+{% set s=0%}
+{% for a in authors %}
+    {% set s=s+a.nb_books%}
+{% endfor %}
+Total number of books: {{ s }}
+
+
+
+
+
