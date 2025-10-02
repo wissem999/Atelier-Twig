@@ -1,3 +1,8 @@
+{% if authors is empty %}
+    
+        No authors found <br
+    
+{% else  %}
 <table border="1">
     <thead>
         <tr>
@@ -8,11 +13,6 @@
             <th> Number of books </th>
         </tr>
     </thead>
-{% if authors is empty %}
-    <tr>
-        <td colspan="5"> No authors found </td>
-    </tr>
-{% else  %}
 {% for a in authors %}
 <tr>
     <td> {{ a.id }} </td>
@@ -23,7 +23,7 @@
     <td><a href="{{ path('authorDetails', {'id': a.id}) }}">Details</a></td>
 </tr>  
 {% endfor %} 
-{% endif  %}
+
 </table>
 Number of authors: {{ authors|length }}
 <br>
@@ -32,6 +32,7 @@ Number of authors: {{ authors|length }}
     {% set s=s+a.nb_books%}
 {% endfor %}
 Total number of books: {{ s }}
+{% endif  %}
 
 
 

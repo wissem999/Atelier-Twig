@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Repository\UserRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,7 +64,15 @@ final class AuthorController extends AbstractController
             'selectedAuthor' => $selectedAuthor,
         ]);
     }
-      
+
+    #[Route('/listAuthors2', name: 'app_author2')]
+    public function ListUser(UserRepository $R): Response
+    {   
+        $authors=$R->findAll();
+        return $this->render('author/list.html.twig', [
+            'authors' => $authors,
+        ]);
+    }
 
     }
 
